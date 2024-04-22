@@ -85,6 +85,7 @@ test.describe("create account", () => {
     await page.goto(createAccount_url);
 
     // const randomNumber = Math.floor(Math.random() * 1000);
+    
     const rundomNumber = Math.random().toString(36).substring(2, 10);
     const firstName = `user_${rundomNumber}`;
     const lastName = `test_${rundomNumber}`;
