@@ -97,8 +97,9 @@ test.describe("create account", () => {
     await page.getByRole('button', {name: 'Create an Account'}).click();
 
     await expect(page).toHaveURL('https://magento.softwaretestingboard.com/customer/account/');
+  });
 
-
-})
-
+  test("Verify displaying 'Create an Account' link in header", async ({ page }) => {
+    await expect(page.locator("header.page-header").getByRole("link", {name: "Create an Account"})).toBeVisible();
+  });
 })
