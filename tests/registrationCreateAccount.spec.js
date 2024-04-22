@@ -80,14 +80,15 @@ test.describe("create account", () => {
       await expect(thanksMessage).toHaveText("Thank you for registering with Main Website Store.");
 
   })
-  test.skip('should be possible to create a new account', async ({ page }) => {
+  test('should be possible to create a new account', async ({ page }) => {
 
     await page.goto(createAccount_url);
 
-    const randomNumber = Math.floor(Math.random() * 1000);
-    const firstName = `user_${randomNumber}`;
-    const lastName = `test_${randomNumber}`;
-    const email = `user_${randomNumber}@example.com`;
+    // const randomNumber = Math.floor(Math.random() * 1000);
+    const rundomNumber = Math.random().toString(36).substring(2, 10);
+    const firstName = `user_${rundomNumber}`;
+    const lastName = `test_${rundomNumber}`;
+    const email = `user_${rundomNumber}@example.com`;
 
     await page.getByRole('textbox', {name: 'First Name*'}).fill(firstName);
     await page.getByRole('textbox', {name: 'Last Name*'}).fill(lastName);
