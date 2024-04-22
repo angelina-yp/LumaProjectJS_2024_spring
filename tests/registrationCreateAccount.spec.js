@@ -97,8 +97,12 @@ test.describe("create account", () => {
     await page.getByRole('button', {name: 'Create an Account'}).click();
 
     await expect(page).toHaveURL('https://magento.softwaretestingboard.com/customer/account/');
+  });
 
+  test("Check redirecting to 'Create New Customer Account' page after click on 'Create an Account' link", async ({ page }) => {
+    await page.getByRole("link", {name: "Create an Account"}).click();
 
-})
-
+    await expect(page.locator("h1.page-title>span")).toHaveText("Create New Customer Account");
+    await expect(page).toHaveTitle("Create New Customer Account");
+  });
 })
