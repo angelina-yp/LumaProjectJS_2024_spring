@@ -175,4 +175,4 @@ test.describe('header', () => {
         await expect(page.locator('.subtitle')).toBeVisible();
         await expect(page.locator('.subtitle')).toHaveText('You have no items in your shopping cart.');        
       });
-});
+})
