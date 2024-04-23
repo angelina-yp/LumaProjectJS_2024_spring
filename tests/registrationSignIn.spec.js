@@ -39,4 +39,12 @@ test.describe('registrationSignIn', () => {
     await expect(userContactInfo).toContainText(userEmail);
   })
 
+  test('Verify user is able sign in succesfully', async({page}) => {
+    await page.getByRole('link', {name: 'Sign In'}).click();
+    await page.locator('#email').fill('123asdQQ@gmail.com');
+    await page.locator('input[name="login[password]"]').fill('123asdQQ');
+    await page.getByRole('button', {name:'Sign In'}).click();
+
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/')
+  })
 })  
