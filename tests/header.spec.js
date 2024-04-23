@@ -185,6 +185,19 @@ test.describe('header', () => {
     await expect(autocompleteList).toContain(searchItem);
   });
 
+  test("Verify the search button (magnifier) becomes active after entering one or more letters", async ({
+    page,
+  }) => {
+    await expect(page.locator("button[title='Search']")).toHaveAttribute(
+      "disabled"
+    );
+
+    await page.getByPlaceholder("Search entire store here...").fill("a");
+    await expect(page.locator("button[title='Search']")).not.toHaveAttribute(
+      "disabled"
+    );
+  });
+
       test('The message “You have no items in your shopping cart.“ is displayed.', async ({page}) => {
         await page.locator('.showcart').click();
         await expect(page.locator('.subtitle')).toBeVisible();
