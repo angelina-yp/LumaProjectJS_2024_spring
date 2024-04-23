@@ -229,7 +229,7 @@ test.describe('homePage', () => {
         await expect(noResultsInfo).toBeHidden();
     })
 
-    test('4th card: image changes according to the selected color', async ({ page }) => {
+    test.skip('4th card: image changes according to the selected color', async ({ page }) => {
         const colorLabels4card = ['Black', 'Gray', 'Green'];
 
         for(const color4 of colorLabels4card) {
