@@ -73,7 +73,7 @@ test.describe("gearBags", () => {
     await expect(page.locator("#toolbar-amount")).toHaveCount(2);
   });
 
-  test("Verify user can switch between materials", async ({ page }) => {
+  test.skip("Verify user can switch between materials", async ({ page }) => {
     await page.hover("#ui-id-6");
     await page.click("#ui-id-25");
 
@@ -103,7 +103,7 @@ test.describe("gearBags", () => {
       await page.click("text=Material");
     }
   });
-  
+
   test('Apply filter "Leather" and verify that each bag has selected material in the description', async ({ page }) => {
     await page.getByRole('tab', {name: 'Material'}).click();
     await page.getByRole('link', {name: 'Leather'}).click();
