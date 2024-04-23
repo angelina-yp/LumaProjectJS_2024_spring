@@ -108,4 +108,41 @@ test.describe('menTops', () => {
         await expect(page.locator('a[href*= "men/tops-men.html?style_general"]').nth(index)).toContainText(listStyle[index])
     }
  });
+
+ test('Verify that user can apply the filter for each category within the Category dd list and reset the filter', async ({page}) =>{
+  const categoriesList = [
+    '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(1) > a',
+    '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(2) > a',
+    '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(3) > a',
+    '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(4) > a'
+  ]
+
+  const subcategoryLinks = [
+    'https://magento.softwaretestingboard.com/men/tops-men.html?cat=14',
+    'https://magento.softwaretestingboard.com/men/tops-men.html?cat=15',
+    'https://magento.softwaretestingboard.com/men/tops-men.html?cat=16',
+    'https://magento.softwaretestingboard.com/men/tops-men.html?cat=17'
+  ]
+
+  const expectedTitles = [
+    'Jackets',
+    'Hoodies & Sweatshirts',
+    'Tees',
+    'Tanks'
+  ]
+
+  const topMenPage = 'men/tops-men.html';
+
+  for (let i = 0; i < categoriesList.length; i++) {
+    await page.goto(topMenPage);
+    await page.locator('.filter-options-title').getByText('Category').click();
+    await page.locator(categoriesList[i]).click();
+    await expect(page.locator(`.filter-value:has-text('${expectedTitles[i]}')`)).toContainText(expectedTitles[i]);
+    await expect(page).toHaveURL(subcategoryLinks[i]);
+
+    await page.locator('.block-actions.filter-actions > a > span').getByText('Clear All').click();
+    await expect(page).toHaveURL(topMenPage);
+    }
+ });
+
 })
