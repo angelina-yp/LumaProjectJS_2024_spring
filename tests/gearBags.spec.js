@@ -51,4 +51,20 @@ test.describe("gearBags", () => {
     })
   })
 
+  test('Apply filter "Leather" and verify that each bag has selected material in the description', async ({ page }) => {
+    await page.getByRole('tab', {name: 'Material'}).click();
+    await page.getByRole('link', {name: 'Leather'}).click();
+    const productItemList = page.getByRole('img')
+    const numberOfItems = await productItemList.count();
+    
+    for (let i = 0; i < numberOfItems; i++) {
+      await productItemList.nth(i).click();
+      await page.getByRole('link', {name: 'More Information'}).click();
+      const materialItemInformation = await page.locator('tbody tr td').nth(2).innerText();
+     
+      expect(materialItemInformation.split(',')[0]).toEqual('Leather');
+      await page.goto('https://magento.softwaretestingboard.com/gear/bags.html?material=35');
+    }    
+  })
+
 });
