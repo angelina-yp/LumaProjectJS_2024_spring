@@ -145,4 +145,11 @@ test.describe('menTops', () => {
     }
  });
 
+ test('displays the number of available products in the Insulated(5) category', async ({page}) => {
+  await page.locator('#ui-id-5').hover()
+  await page.locator('#ui-id-17').click()
+  await page.getByRole('tab', { name: 'Style' }).click()
+  
+  await expect(page.locator('a[href*= "men/tops-men.html?style_general=116"]').filter({ hasText: 'Insulated 5 item' })).toBeVisible();
+  })
 })
