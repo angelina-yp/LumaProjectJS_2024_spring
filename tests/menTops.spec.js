@@ -141,17 +141,18 @@ test.describe('menTops', () => {
     'Tanks'
   ]
 
-  const topMenPage = 'men/tops-men.html';
+  await page.locator('#ui-id-5').hover();
+  await page.locator('#ui-id-17').click();
 
   for (let i = 0; i < categoriesList.length; i++) {
-    await page.goto(topMenPage);
+    await page.goto('men/tops-men.html');
     await page.locator('.filter-options-title').getByText('Category').click();
     await page.locator(categoriesList[i]).click();
     await expect(page.locator(`.filter-value:has-text('${expectedTitles[i]}')`)).toContainText(expectedTitles[i]);
     await expect(page).toHaveURL(subcategoryLinks[i]);
 
     await page.locator('.block-actions.filter-actions > a > span').getByText('Clear All').click();
-    await expect(page).toHaveURL(topMenPage);
+    await expect(page).toHaveURL('men/tops-men.html');
     }
  });
 
@@ -162,5 +163,5 @@ test.describe('menTops', () => {
   
   await expect(page.locator('a[href*= "men/tops-men.html?style_general=116"]').filter({ hasText: 'Insulated 5 item' })).toBeVisible();
   })
-  
+
 })
