@@ -6,8 +6,8 @@ test.describe('Redirection from different pages into Home page', () => {
     const PAGES = {
         "whatsNew'": "/what-is-new.html",
         "women": "/women.html",
-        "men": "/men.thml",
-        "gear": "gear.html",
+        "men": "/men.html",
+        "gear": "/gear.html",
         "training": "/training.html",
         "sale": "/sale.html"
     }
