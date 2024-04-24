@@ -208,9 +208,7 @@ test.describe('watchesPage', () => {
         const listOfMaterialsSplitedActual = listOfMaterialsActual.map(
             (item) => item.split(/\s\d+/)[0]
         );
-        console.log(listOfMaterialsActual);
-        console.log(listOfMaterialsSplitedActual);
-
+       
         for (const material of listOfMaterialsSplitedActual)
         {
             await page.getByRole("link", { name: material }).click();
