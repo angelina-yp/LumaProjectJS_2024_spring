@@ -29,6 +29,7 @@ test.describe('menTops', () => {
      await expect(page.locator('.base') ).toHaveText('Tops');
      await expect(page).toHaveURL( 'https://magento.softwaretestingboard.com/men/tops-men.html');
    })
+
    test('Check that category drop-down displays the products', async ({page}) => {
     await page.goto('https://magento.softwaretestingboard.com/men/tops-men.html');
     await page.getByRole('tab', {name:'Category' }).click();
@@ -83,6 +84,7 @@ test.describe('menTops', () => {
 
     await expect(prices).toEqual(sortedPrices);
   })
+
   test("Check the name of 14 shopping styles in the Men's/Tops section.", async ({ page }) => {
     const listStyle = [
     'Insulated',
@@ -160,4 +162,5 @@ test.describe('menTops', () => {
   
   await expect(page.locator('a[href*= "men/tops-men.html?style_general=116"]').filter({ hasText: 'Insulated 5 item' })).toBeVisible();
   })
+  
 })
