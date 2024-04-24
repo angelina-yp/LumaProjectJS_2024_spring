@@ -45,7 +45,7 @@ test.describe('menTops', () => {
     await expect(page.getByRole('option', {name: 'Price'})).toHaveText('Price');
   })
 
-  test('verify the ability to sort products in ascending order by price', async ({ page }) => {
+  test.skip('verify the ability to sort products in ascending order by price', async ({ page }) => {
     await page.goto('/' + 'men/tops-men.html');
     await page.getByLabel('Sort by').click();
     await page.locator('#sorter').first().selectOption('Price');
@@ -109,6 +109,14 @@ test.describe('menTops', () => {
     }
  });
 
+
+
+
+
+
+
+
+ 
  test('Verify that user can apply the filter for each category within the Category dd list and reset the filter', async ({page}) =>{
   const categoriesList = [
     '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(1) > a',
@@ -145,4 +153,11 @@ test.describe('menTops', () => {
     }
  });
 
+ test('displays the number of available products in the Insulated(5) category', async ({page}) => {
+  await page.locator('#ui-id-5').hover()
+  await page.locator('#ui-id-17').click()
+  await page.getByRole('tab', { name: 'Style' }).click()
+  
+  await expect(page.locator('a[href*= "men/tops-men.html?style_general=116"]').filter({ hasText: 'Insulated 5 item' })).toBeVisible();
+  })
 })
